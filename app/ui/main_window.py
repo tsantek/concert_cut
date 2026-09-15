@@ -31,7 +31,12 @@ from app.project_store import load_project, save_project, sidecar_path
 from app.segmenter import build_segments, waveform_peaks
 from app.setlist import parse_setlist
 from app.ui.export_dialog import ExportDialog
+from app.ui.playlist_page import PlaylistPage
 from app.ui.waveform import WaveformWidget
+
+PAGE_CONCERT = 0
+PAGE_EDITOR = 1
+PAGE_PLAYLIST = 2
 
 
 def _fmt_time(seconds: float) -> str:
@@ -175,12 +180,34 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(self.stack)
         self.stack.addWidget(self._build_download_page())
         self.stack.addWidget(self._build_editor_page())
+        self._playlist_page = PlaylistPage()
+        self._playlist_page.switch_to_concert.connect(self._go_concert)
+        self.stack.addWidget(self._playlist_page)
+
+    def _go_concert(self) -> None:
+        self.stack.setCurrentIndex(PAGE_CONCERT)
+
+    def _go_playlist(self) -> None:
+        self.stack.setCurrentIndex(PAGE_PLAYLIST)
 
     def _build_download_page(self) -> QWidget:
         page = QWidget()
         page.setObjectName("DownloadPage")
         outer = QVBoxLayout(page)
         outer.setContentsMargins(48, 40, 48, 40)
+
+        mode = QHBoxLayout()
+        concert_btn = QPushButton("Concert Cut")
+        concert_btn.setObjectName("ModeTabActive")
+        concert_btn.setEnabled(False)
+        playlist_btn = QPushButton("Playlist Cut")
+        playlist_btn.setObjectName("ModeTab")
+        playlist_btn.clicked.connect(self._go_playlist)
+        mode.addWidget(concert_btn)
+        mode.addWidget(playlist_btn)
+        mode.addStretch(1)
+        outer.addLayout(mode)
+
         outer.addStretch(1)
 
         card = QFrame()
@@ -401,7 +428,7 @@ class MainWindow(QMainWindow):
     def _go_new_source(self) -> None:
         self._stop_playback()
         self._persist_project()
-        self.stack.setCurrentIndex(0)
+        self.stack.setCurrentIndex(PAGE_CONCERT)
 
     def _persist_project(self) -> None:
         """Write current edits to the sidecar next to the media file."""
@@ -521,7 +548,7 @@ class MainWindow(QMainWindow):
         self.waveform.set_segments(project.segments)
         self._on_waveform_view_changed()
         self._refill_table()
-        self.stack.setCurrentIndex(1)
+        self.stack.setCurrentIndex(PAGE_EDITOR)
 
     def _refill_table(self) -> None:
         if not self._project:

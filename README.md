@@ -1,14 +1,18 @@
 # Concert Cut
 
-Download a concert from the network or open a local file, cut it into songs, and export tagged tracks.
+Download a concert from the network or open a local file, cut it into songs, and export tagged tracks. Or fetch a **network playlist**, pick the songs you want, and save them.
 
-`concert_cut` is the project / folder name. The app displays as **Concert Cut**.
+`concert_cut` is the project / folder name. The app has two modes: **Concert Cut** and **Playlist Cut**.
 
-![Home screen](assets/screenshot-home.png)
+![Home — Concert Cut](assets/screenshot-home.png)
 
 ![Editor](assets/screenshot-editor.png)
 
+![Playlist Cut](assets/screenshot-playlist.png)
+
 ## Features
+
+### Concert Cut
 
 - Download from a network URL, or open audio/video from disk
 - Pre-cut from chapters, energy gaps, or a pasted **setlist**
@@ -16,6 +20,16 @@ Download a concert from the network or open a local file, cut it into songs, and
 - Waveform editor with begin/end handles, zoom, and scroll
 - Export selected songs with Name + Title tags
 - Sidecar save (`*.concertcut.json`) so local reopen keeps your cuts
+
+### Playlist Cut
+
+- Paste a **network playlist URL** (or a single track URL)
+- **Fetch songs** lists available tracks (Artist + Song name + duration)
+- Unavailable / incomplete tracks are hidden
+- **Save selected** downloads checked songs into your **Save to** folder
+- Progress popup while fetching or downloading; **Stop** cancels after the current song
+- Files named `NN - Artist - Song.m4a` under a playlist subfolder
+- A single-track network URL loads **one** song (related/mix links are ignored)
 
 ## Requirements
 
@@ -25,7 +39,8 @@ Download a concert from the network or open a local file, cut it into songs, and
 ## Setup
 
 ```bash
-cd y_audio_download_cut
+git clone <repo-url> concert_cut
+cd concert_cut
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -38,19 +53,31 @@ source .venv/bin/activate
 python -m app.main
 ```
 
-Downloads default to `~/Downloads/concert_cut/`.
+Concert downloads default to `~/Downloads/concert_cut/`.  
+Playlist saves default to `~/Downloads/concert_cut/playlists/`.
 
 ## Flow
 
-1. Paste a **network URL** and click **Download & Pre-cut**, or **Open local file…**
-2. Review pre-cuts (chapters or energy detection)
-3. Optionally paste a setlist and click **Apply setlist**
-4. Tweak titles and begin/end handles; preview with Play
-5. **Export…** checked songs (mp3 / m4a / wav)
+### Concert Cut
+
+1. Open the **Concert Cut** tab
+2. Paste a **network URL** → **Download & Pre-cut**, or **Open local file…**
+3. Review pre-cuts (chapters or energy detection)
+4. Optionally paste a setlist → **Apply setlist**
+5. Tweak titles and begin/end handles; preview with Play
+6. **Export…** checked songs (mp3 / m4a / wav)
 
 Edits are saved beside the media file as `*.concertcut.json`.
 
-## Setlist formats
+### Playlist Cut
+
+1. Open the **Playlist Cut** tab
+2. Paste a **network playlist URL** (or one track URL) → **Fetch songs**
+3. Check the songs you want
+4. Confirm **Save to** folder → **Save selected**
+5. Wait for the download popup to finish
+
+## Setlist formats (Concert Cut)
 
 ```text
 0:01 : Wrong ones
@@ -67,6 +94,19 @@ Sunflower 1:24:30
 
 ## Tips
 
-- Scroll wheel zooms the waveform; scrollbar (or Shift+wheel) pans when zoomed
-- Green △ = song start (top); amber ▽ = song end (bottom)
-- Use only for content you are allowed to download and process
+- Concert Cut: scroll wheel zooms the waveform; scrollbar (or Shift+wheel) pans when zoomed
+- Concert Cut: teal △ = song start (top); amber ▽ = song end (bottom)
+- Playlist Cut: click a row to toggle its checkbox; use **Check all** / **Uncheck all**
+- Keep UI and docs free of site-specific branding — treat sources as generic network media
+
+## Contributing
+
+Issues and pull requests are welcome. Do not add site-specific branding in the UI or README.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+## Responsible use
+
+Use Concert Cut only with media you have the right to download and process. Respect the terms of any site or service you access, and applicable copyright law. The authors are not responsible for misuse.

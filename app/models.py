@@ -35,3 +35,30 @@ class ConcertProject:
     video_id: str = ""
     chapters: list[dict] | None = None
     loaded_from_sidecar: bool = False
+
+
+@dataclass
+class PlaylistEntry:
+    id: str
+    title: str  # song name
+    duration: float
+    url: str
+    artist: str = ""
+    path: Path | None = None
+
+
+@dataclass
+class PlaylistInfo:
+    title: str
+    entries: list[PlaylistEntry] = field(default_factory=list)
+    source_url: str = ""
+
+
+def split_artist_title(raw_title: str, *, fallback_artist: str = "") -> tuple[str, str]:
+    """Split 'Artist - Song' into (artist, song)."""
+    text = (raw_title or "").strip()
+    if " - " in text:
+        left, right = text.split(" - ", 1)
+        if left.strip() and right.strip():
+            return left.strip(), right.strip()
+    return (fallback_artist or "").strip(), text or "Untitled"

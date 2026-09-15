@@ -171,6 +171,36 @@ def app_stylesheet() -> str:
         border: 1px solid {BORDER};
     }}
 
+    QPushButton#ModeTab, QPushButton#ModeTabActive {{
+        border-radius: 6px;
+        padding: 7px 16px;
+        font-weight: 600;
+        min-width: 118px;
+    }}
+
+    QPushButton#ModeTab {{
+        background-color: transparent;
+        border: 1px solid {BORDER};
+        color: {TEXT_MUTED};
+    }}
+
+    QPushButton#ModeTab:hover {{
+        color: {TEXT};
+        border-color: #3a4358;
+    }}
+
+    QPushButton#ModeTabActive {{
+        background-color: {ACCENT_DIM};
+        border: 1px solid {ACCENT};
+        color: {TEXT};
+    }}
+
+    QPushButton#ModeTabActive:disabled {{
+        background-color: {ACCENT_DIM};
+        border: 1px solid {ACCENT};
+        color: {TEXT};
+    }}
+
     QCheckBox {{
         spacing: 8px;
         color: {TEXT};
@@ -188,6 +218,27 @@ def app_stylesheet() -> str:
     QCheckBox::indicator:checked {{
         background: {ACCENT};
         border-color: {ACCENT};
+    }}
+
+    QCheckBox#PlaylistCheck::indicator {{
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        border: 2px solid {BORDER};
+        background: {BG_INPUT};
+    }}
+
+    QCheckBox#PlaylistCheck::indicator:hover {{
+        border-color: {ACCENT};
+    }}
+
+    QCheckBox#PlaylistCheck::indicator:checked {{
+        background: {ACCENT};
+        border-color: {ACCENT};
+    }}
+
+    QWidget#CheckCell {{
+        background: transparent;
     }}
 
     QProgressBar {{

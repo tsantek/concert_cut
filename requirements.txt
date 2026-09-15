@@ -1,4 +1,5 @@
 PySide6>=6.6.0
+# Network media downloader (many sites)
 yt-dlp>=2024.1.0
 numpy>=1.26.0
 soundfile>=0.12.1
