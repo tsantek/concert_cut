@@ -15,7 +15,7 @@ except ImportError as exc:  # pragma: no cover
         "Network downloader dependency missing. Run: pip install -r requirements.txt"
     ) from exc
 
-log = get_logger("concert_cut.downloader")
+log = get_logger("track_cut.downloader")
 
 
 ProgressCallback = Callable[[float, str], None]
@@ -33,7 +33,7 @@ class DownloadResult:
 
 
 def _default_work_dir() -> Path:
-    return Path.home() / "Downloads" / "concert_cut"
+    return Path.home() / "Downloads" / "track_cut"
 
 
 def _normalize_fetch_url(url: str) -> tuple[str, bool]:

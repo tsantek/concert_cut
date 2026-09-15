@@ -1,27 +1,29 @@
-# Concert Cut
+# Track Cut
 
-Download a concert from the network or open a local file, cut it into songs, and export tagged tracks. Or fetch a **network playlist**, pick the songs you want, and save them.
+**Track Cut** is a desktop app for pulling audio from the network or disk, then turning it into clean individual tracks — either by cutting a long concert recording, or by saving songs from a playlist.
 
-`concert_cut` is the project / folder name. The app has two modes: **Concert Cut** and **Playlist Cut**.
+Two modes: **Concert** (download / open a show, cut songs on a waveform, export) and **Playlist** (fetch a network playlist or single track, pick songs, save).
 
-![Home — Concert Cut](assets/screenshot-home.png)
+`track_cut` is the project / folder name.
+
+![Home](assets/screenshot-home.png)
 
 ![Editor](assets/screenshot-editor.png)
 
-![Playlist Cut](assets/screenshot-playlist.png)
+![Playlist](assets/screenshot-playlist.png)
 
 ## Features
 
-### Concert Cut
+### Concert
 
 - Download from a network URL, or open audio/video from disk
 - Pre-cut from chapters, energy gaps, or a pasted **setlist**
 - Setlist starts kept; song **ends** refined to quiet gaps when possible
 - Waveform editor with begin/end handles, zoom, and scroll
 - Export selected songs with Name + Title tags
-- Sidecar save (`*.concertcut.json`) so local reopen keeps your cuts
+- Sidecar save (`*.trackcut.json`) so local reopen keeps your cuts
 
-### Playlist Cut
+### Playlist
 
 - Paste a **network playlist URL** (or a single track URL)
 - **Fetch songs** lists available tracks (Artist + Song name + duration)
@@ -39,8 +41,8 @@ Download a concert from the network or open a local file, cut it into songs, and
 ## Setup
 
 ```bash
-git clone <repo-url> concert_cut
-cd concert_cut
+git clone <repo-url> track_cut
+cd track_cut
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
@@ -53,31 +55,31 @@ source .venv/bin/activate
 python -m app.main
 ```
 
-Concert downloads default to `~/Downloads/concert_cut/`.  
-Playlist saves default to `~/Downloads/concert_cut/playlists/`.
+Concert downloads default to `~/Downloads/track_cut/`.  
+Playlist saves default to `~/Downloads/track_cut/playlists/`.
 
 ## Flow
 
-### Concert Cut
+### Concert
 
-1. Open the **Concert Cut** tab
+1. Open the **Concert** tab
 2. Paste a **network URL** → **Download & Pre-cut**, or **Open local file…**
 3. Review pre-cuts (chapters or energy detection)
 4. Optionally paste a setlist → **Apply setlist**
 5. Tweak titles and begin/end handles; preview with Play
 6. **Export…** checked songs (mp3 / m4a / wav)
 
-Edits are saved beside the media file as `*.concertcut.json`.
+Edits are saved beside the media file as `*.trackcut.json`.
 
-### Playlist Cut
+### Playlist
 
-1. Open the **Playlist Cut** tab
+1. Open the **Playlist** tab
 2. Paste a **network playlist URL** (or one track URL) → **Fetch songs**
 3. Check the songs you want
 4. Confirm **Save to** folder → **Save selected**
 5. Wait for the download popup to finish
 
-## Setlist formats (Concert Cut)
+## Setlist formats (Concert)
 
 ```text
 0:01 : Wrong ones
@@ -94,9 +96,9 @@ Sunflower 1:24:30
 
 ## Tips
 
-- Concert Cut: scroll wheel zooms the waveform; scrollbar (or Shift+wheel) pans when zoomed
-- Concert Cut: teal △ = song start (top); amber ▽ = song end (bottom)
-- Playlist Cut: click a row to toggle its checkbox; use **Check all** / **Uncheck all**
+- Concert: scroll wheel zooms the waveform; scrollbar (or Shift+wheel) pans when zoomed
+- Concert: teal △ = song start (top); amber ▽ = song end (bottom)
+- Playlist: click a row to toggle its checkbox; use **Check all** / **Uncheck all**
 - Keep UI and docs free of site-specific branding — treat sources as generic network media
 
 ## Contributing
@@ -109,4 +111,4 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Responsible use
 
-Use Concert Cut only with media you have the right to download and process. Respect the terms of any site or service you access, and applicable copyright law. The authors are not responsible for misuse.
+Use Track Cut only with media you have the right to download and process. Respect the terms of any site or service you access, and applicable copyright law. The authors are not responsible for misuse.

@@ -11,11 +11,11 @@ from app.ui.theme import apply_theme
 
 def main() -> int:
     setup_logging()
-    log = get_logger("concert_cut")
-    log.info("Starting Concert Cut")
+    log = get_logger("track_cut")
+    log.info("Starting Track Cut")
     app = QApplication(sys.argv)
-    app.setApplicationName("Concert Cut")
-    app.setApplicationDisplayName("Concert Cut")
+    app.setApplicationName("Track Cut")
+    app.setApplicationDisplayName("Track Cut")
     apply_theme(app)
     window = MainWindow()
     window.show()

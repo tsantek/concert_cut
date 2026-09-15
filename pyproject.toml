@@ -1,12 +1,12 @@
 [project]
-name = "concert_cut"
+name = "track_cut"
 version = "0.1.0"
-description = "Download concert audio from the network or disk, cut songs, and export tagged tracks."
+description = "Download audio from the network or disk, cut concerts into songs, or save playlist tracks."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [{ name = "Tom Santek" }]
-keywords = ["audio", "concert", "cut", "export", "desktop"]
+keywords = ["audio", "track", "cut", "playlist", "export", "desktop"]
 dependencies = [
   "PySide6>=6.6.0",
   "yt-dlp>=2024.1.0",
@@ -15,7 +15,7 @@ dependencies = [
 ]
 
 [project.scripts]
-concert-cut = "app.main:main"
+track-cut = "app.main:main"
 
 [build-system]
 requires = ["setuptools>=68"]

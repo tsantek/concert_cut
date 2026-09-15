@@ -27,5 +27,5 @@ def setup_logging(level: int = logging.INFO) -> None:
     root.setLevel(level)
 
 
-def get_logger(name: str = "concert_cut") -> logging.Logger:
+def get_logger(name: str = "track_cut") -> logging.Logger:
     return logging.getLogger(name)

@@ -1,4 +1,5 @@
-"""concert_cut visual theme — late-night studio console, not default Qt chrome."""
+"""track_cut visual theme — late-night studio console, not default Qt chrome."""
+
 
 from __future__ import annotations
 
@@ -175,7 +176,7 @@ def app_stylesheet() -> str:
         border-radius: 6px;
         padding: 7px 16px;
         font-weight: 600;
-        min-width: 118px;
+        min-width: 96px;
     }}
 
     QPushButton#ModeTab {{

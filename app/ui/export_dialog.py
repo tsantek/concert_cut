@@ -79,7 +79,7 @@ class ExportDialog(QDialog):
         self.format_combo.addItems(["mp3", "m4a", "wav"])
         form.addRow("Format", self.format_combo)
 
-        default_out = Path.home() / "Downloads" / "concert_cut" / "exports"
+        default_out = Path.home() / "Downloads" / "track_cut" / "exports"
         self.out_edit = QLineEdit(str(default_out))
         browse = QPushButton("Browse…")
         browse.clicked.connect(self._browse)

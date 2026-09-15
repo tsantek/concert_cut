@@ -156,7 +156,7 @@ class AnalyzeWorker(QObject):
 class MainWindow(QMainWindow):
     def __init__(self) -> None:
         super().__init__()
-        self.setWindowTitle("Concert Cut")
+        self.setWindowTitle("Track Cut")
         self.resize(1100, 760)
         self.setMinimumSize(900, 640)
 
@@ -197,10 +197,10 @@ class MainWindow(QMainWindow):
         outer.setContentsMargins(48, 40, 48, 40)
 
         mode = QHBoxLayout()
-        concert_btn = QPushButton("Concert Cut")
+        concert_btn = QPushButton("Concert")
         concert_btn.setObjectName("ModeTabActive")
         concert_btn.setEnabled(False)
-        playlist_btn = QPushButton("Playlist Cut")
+        playlist_btn = QPushButton("Playlist")
         playlist_btn.setObjectName("ModeTab")
         playlist_btn.clicked.connect(self._go_playlist)
         mode.addWidget(concert_btn)
@@ -217,7 +217,7 @@ class MainWindow(QMainWindow):
         layout.setContentsMargins(36, 36, 36, 36)
         layout.setSpacing(14)
 
-        title = QLabel("Concert Cut")
+        title = QLabel("Track Cut")
         title.setObjectName("BrandTitle")
         layout.addWidget(title)
 
@@ -246,7 +246,7 @@ class MainWindow(QMainWindow):
         folder_label.setObjectName("MutedLabel")
         layout.addWidget(folder_label)
         folder_row = QHBoxLayout()
-        self.out_dir_edit = QLineEdit(str(Path.home() / "Downloads" / "concert_cut"))
+        self.out_dir_edit = QLineEdit(str(Path.home() / "Downloads" / "track_cut"))
         browse = QPushButton("Folder…")
         browse.setObjectName("GhostButton")
         browse.clicked.connect(self._browse_download_dir)
@@ -479,7 +479,7 @@ class MainWindow(QMainWindow):
         self._thread.start()
 
     def _open_local_file(self) -> None:
-        start = str(Path.home() / "Downloads" / "concert_cut")
+        start = str(Path.home() / "Downloads" / "track_cut")
         path, _ = QFileDialog.getOpenFileName(
             self, "Open concert file", start, AUDIO_VIDEO_FILTER
         )

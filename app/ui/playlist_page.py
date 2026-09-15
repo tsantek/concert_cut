@@ -28,7 +28,7 @@ from app.downloader import download, fetch_playlist
 from app.logging_setup import get_logger
 from app.models import PlaylistEntry, PlaylistInfo, split_artist_title
 
-log = get_logger("concert_cut.playlist")
+log = get_logger("track_cut.playlist")
 
 
 def _fmt_time(seconds: float) -> str:
@@ -263,10 +263,10 @@ class PlaylistPage(QWidget):
         root.setSpacing(12)
 
         mode = QHBoxLayout()
-        concert_btn = QPushButton("Concert Cut")
+        concert_btn = QPushButton("Concert")
         concert_btn.setObjectName("ModeTab")
         concert_btn.clicked.connect(self.switch_to_concert.emit)
-        playlist_btn = QPushButton("Playlist Cut")
+        playlist_btn = QPushButton("Playlist")
         playlist_btn.setObjectName("ModeTabActive")
         playlist_btn.setEnabled(False)
         mode.addWidget(concert_btn)
@@ -274,7 +274,7 @@ class PlaylistPage(QWidget):
         mode.addStretch(1)
         root.addLayout(mode)
 
-        title = QLabel("Playlist Cut")
+        title = QLabel("Playlist")
         title.setObjectName("ProjectTitle")
         root.addWidget(title)
 
@@ -299,7 +299,7 @@ class PlaylistPage(QWidget):
         root.addWidget(folder_label)
         folder_row = QHBoxLayout()
         self.out_dir_edit = QLineEdit(
-            str(Path.home() / "Downloads" / "concert_cut" / "playlists")
+            str(Path.home() / "Downloads" / "track_cut" / "playlists")
         )
         browse = QPushButton("Folder…")
         browse.setObjectName("GhostButton")

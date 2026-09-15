@@ -6,13 +6,18 @@ from typing import Any
 
 from app.models import ConcertProject, Segment
 
-SIDECAR_SUFFIX = ".concertcut.json"
+SIDECAR_SUFFIX = ".trackcut.json"
+LEGACY_SIDECAR_SUFFIX = ".concertcut.json"
 STORE_VERSION = 1
 
 
 def sidecar_path(media_path: Path) -> Path:
-    """`concert.m4a` → `concert.m4a.concertcut.json` (stays next to the file)."""
+    """`show.m4a` → `show.m4a.trackcut.json` (stays next to the file)."""
     return Path(str(media_path) + SIDECAR_SUFFIX)
+
+
+def _legacy_sidecar_path(media_path: Path) -> Path:
+    return Path(str(media_path) + LEGACY_SIDECAR_SUFFIX)
 
 
 def save_project(project: ConcertProject) -> Path:
@@ -46,6 +51,8 @@ def save_project(project: ConcertProject) -> Path:
 def load_project(media_path: Path) -> ConcertProject | None:
     """Load saved cuts/metadata for a local media file, if the sidecar exists."""
     path = sidecar_path(media_path)
+    if not path.is_file():
+        path = _legacy_sidecar_path(media_path)
     if not path.is_file():
         return None
     try:
